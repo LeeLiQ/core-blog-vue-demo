@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\blog-webapi-vue.Model\blog-webapi-vue.Model.csproj" />
+    <ProjectReference Include="..\blog-webapi-vue.IServices\blog-webapi-vue.IServices.csproj" />
+    <ProjectReference Include="..\blog-webapi-vue.Services\blog-webapi-vue.Services.csproj" />
   </ItemGroup>
 
 </Project>

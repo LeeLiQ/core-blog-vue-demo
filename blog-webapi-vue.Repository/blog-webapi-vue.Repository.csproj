@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\blog-webapi-vue.IRepository\blog-webapi-vue.IRepository.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>blog_webapi_vue.Repository</RootNamespace>
+  </PropertyGroup>
+
+</Project>
