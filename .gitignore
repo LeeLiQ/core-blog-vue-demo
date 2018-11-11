@@ -9,6 +9,7 @@
 
 _build/
 _site/
+# it looks like the launchSettings.json is useful. Donot ingore it.
 Properties/
 
 # Use git add -f to force override .sln when required. Not needed in most cases.
