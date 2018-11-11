@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -54,6 +55,36 @@ namespace blog_webapi_vue
 
                 var xmlModelPath = Path.Combine(basePath, "blog-webapi-vue.Models.xml");
                 c.IncludeXmlComments(xmlModelPath);
+
+                #region TokenBinding
+
+                var security = new Dictionary<string, IEnumerable<string>>
+                    { { "Blog.Core", new string[] { } }
+                    };
+                c.AddSecurityRequirement(security);
+                c.AddSecurityDefinition("Blog.Core", new ApiKeyScheme
+                {
+                    Description = "JWT auth (data will be in the request header) enter {token} below.",
+                        Name = "Authorization", // jwt default parameter name
+                        In = "header",
+                        Type = "apiKey"
+                });
+
+                #endregion
+            });
+            #endregion
+
+            #region [TokenService]
+            services.AddSingleton<IMemoryCache>(factory =>
+            {
+                var cache = new MemoryCache(new MemoryCacheOptions());
+                return cache;
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Client", policy => policy.RequireRole("Client").Build());
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin").Build());
+                options.AddPolicy("AdminOrClient", policy => policy.RequireRole("Admin,Client").Build());
             });
             #endregion
         }
