@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\blog-webapi-vue.Models\blog-webapi-vue.Models.csproj" />
+    <ProjectReference Include="..\blog-webapi-vue.Model\blog-webapi-vue.Model.csproj" />
   </ItemGroup>
 
 </Project>

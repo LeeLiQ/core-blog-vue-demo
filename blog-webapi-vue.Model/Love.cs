@@ -1,4 +1,4 @@
-namespace blog_webapi_vue.Models
+namespace blog_webapi_vue.Model
 {
     /// <summary>
     /// This is love I guess
@@ -6,7 +6,7 @@ namespace blog_webapi_vue.Models
     public class Love
     {
         /// <summary>
-        /// ID
+        /// id
         /// </summary>
         /// <value></value>
         public int Id { get; set; }
@@ -16,11 +16,5 @@ namespace blog_webapi_vue.Models
         /// </summary>
         /// <value></value>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Age
-        /// </summary>
-        /// <value></value>
-        public int Age { get; set; }
     }
 }

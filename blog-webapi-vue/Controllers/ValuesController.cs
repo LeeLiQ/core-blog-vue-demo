@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using blog_webapi_vue.Models;
+using blog_webapi_vue.Model;
 
 using Microsoft.AspNetCore.Mvc;
 
