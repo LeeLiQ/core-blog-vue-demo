@@ -1,12 +1,12 @@
 namespace blog_webapi_vue.Model
 {
     /// <summary>
-    /// This is love I guess
+    /// This is love
     /// </summary>
     public class Love
     {
         /// <summary>
-        /// id
+        /// ID
         /// </summary>
         /// <value></value>
         public int Id { get; set; }
@@ -16,5 +16,11 @@ namespace blog_webapi_vue.Model
         /// </summary>
         /// <value></value>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
+        public int Age { get; set; }
     }
 }

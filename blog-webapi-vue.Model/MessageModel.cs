@@ -26,4 +26,5 @@ namespace blog_webapi_vue.Model
         /// <value>List of type T</value>
         public List<T> Data { get; set; }
     }
+
 }

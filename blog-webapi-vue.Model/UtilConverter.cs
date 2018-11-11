@@ -15,7 +15,7 @@ namespace blog_webapi_vue.Model
         public static int ObjToInt(this object thisValue)
         {
             int reval = 0;
-            if (thisValue == null)return 0;
+            if (thisValue == null) return 0;
             if (thisValue != null && thisValue != DBNull.Value && int.TryParse(thisValue.ToString(), out reval))
             {
                 return reval;
@@ -73,7 +73,7 @@ namespace blog_webapi_vue.Model
         /// <returns></returns>
         public static string ObjToString(this object thisValue)
         {
-            if (thisValue != null)return thisValue.ToString().Trim();
+            if (thisValue != null) return thisValue.ToString().Trim();
             return "";
         }
         /// <summary>
@@ -84,7 +84,7 @@ namespace blog_webapi_vue.Model
         /// <returns></returns>
         public static string ObjToString(this object thisValue, string errorValue)
         {
-            if (thisValue != null)return thisValue.ToString().Trim();
+            if (thisValue != null) return thisValue.ToString().Trim();
             return errorValue;
         }
         /// <summary>
