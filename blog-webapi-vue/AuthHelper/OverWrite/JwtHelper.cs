@@ -42,8 +42,8 @@ namespace blog_webapi_vue.AuthHelper
 
             var jwt = new JwtSecurityToken(
                 issuer: "Blog.Core",
-                claims : claims,
-                signingCredentials : creds
+                claims: claims,
+                signingCredentials: creds
             );
 
             var jwtHanlder = new JwtSecurityTokenHandler();
@@ -75,8 +75,8 @@ namespace blog_webapi_vue.AuthHelper
 
             var tokenModel = new TokenModelJWT
             {
-                Uid = (jwtToken.Id).ObjToInt(),
-                Role = role != null?role.ObjToString() : string.Empty
+                Uid = (jwtToken.Id).ObjectToInt(),
+                Role = role != null ? role.ObjectToString() : string.Empty
             };
             return tokenModel;
         }

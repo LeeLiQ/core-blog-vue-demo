@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using blog_webapi_vue.IServices;
+using blog_webapi_vue.Model;
 using blog_webapi_vue.Services;
 using Microsoft.AspNetCore.Mvc;
 namespace blog_webapi_vue.Controllers
@@ -17,9 +18,10 @@ namespace blog_webapi_vue.Controllers
 
         // GET: api/Blog/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public List<Advertisement> Get(int id)
         {
-            return "value";
+            IAdvertisementServices advertisementServices = new AdvertisementServices();
+            return advertisementServices.Query(d => d.Id == id);
         }
 
         // POST: api/Blog

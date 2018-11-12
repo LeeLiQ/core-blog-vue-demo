@@ -2,6 +2,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\blog-webapi-vue.IRepository\blog-webapi-vue.IRepository.csproj" />
+    <ProjectReference Include="..\blog-webapi-vue.Model\blog-webapi-vue.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.13" />
+    <PackageReference Include="sqlSugarCore" Version="4.8.5" />
   </ItemGroup>
 
   <PropertyGroup>

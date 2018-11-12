@@ -12,7 +12,7 @@ namespace blog_webapi_vue.Model
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        public static int ObjToInt(this object thisValue)
+        public static int ObjectToInt(this object thisValue)
         {
             int reval = 0;
             if (thisValue == null) return 0;
@@ -28,7 +28,7 @@ namespace blog_webapi_vue.Model
         /// <param name="thisValue"></param>
         /// <param name="errorValue"></param>
         /// <returns></returns>
-        public static int ObjToInt(this object thisValue, int errorValue)
+        public static int ObjectToInt(this object thisValue, int errorValue)
         {
             int reval = 0;
             if (thisValue != null && thisValue != DBNull.Value && int.TryParse(thisValue.ToString(), out reval))
@@ -42,7 +42,7 @@ namespace blog_webapi_vue.Model
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        public static double ObjToMoney(this object thisValue)
+        public static double ObjectToMoney(this object thisValue)
         {
             double reval = 0;
             if (thisValue != null && thisValue != DBNull.Value && double.TryParse(thisValue.ToString(), out reval))
@@ -57,7 +57,7 @@ namespace blog_webapi_vue.Model
         /// <param name="thisValue"></param>
         /// <param name="errorValue"></param>
         /// <returns></returns>
-        public static double ObjToMoney(this object thisValue, double errorValue)
+        public static double ObjectToMoney(this object thisValue, double errorValue)
         {
             double reval = 0;
             if (thisValue != null && thisValue != DBNull.Value && double.TryParse(thisValue.ToString(), out reval))
@@ -71,7 +71,7 @@ namespace blog_webapi_vue.Model
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        public static string ObjToString(this object thisValue)
+        public static string ObjectToString(this object thisValue)
         {
             if (thisValue != null) return thisValue.ToString().Trim();
             return "";
@@ -82,7 +82,7 @@ namespace blog_webapi_vue.Model
         /// <param name="thisValue"></param>
         /// <param name="errorValue"></param>
         /// <returns></returns>
-        public static string ObjToString(this object thisValue, string errorValue)
+        public static string ObjectToString(this object thisValue, string errorValue)
         {
             if (thisValue != null) return thisValue.ToString().Trim();
             return errorValue;
@@ -92,7 +92,7 @@ namespace blog_webapi_vue.Model
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        public static Decimal ObjToDecimal(this object thisValue)
+        public static Decimal ObjectToDecimal(this object thisValue)
         {
             Decimal reval = 0;
             if (thisValue != null && thisValue != DBNull.Value && decimal.TryParse(thisValue.ToString(), out reval))
@@ -107,7 +107,7 @@ namespace blog_webapi_vue.Model
         /// <param name="thisValue"></param>
         /// <param name="errorValue"></param>
         /// <returns></returns>
-        public static Decimal ObjToDecimal(this object thisValue, decimal errorValue)
+        public static Decimal ObjectToDecimal(this object thisValue, decimal errorValue)
         {
             Decimal reval = 0;
             if (thisValue != null && thisValue != DBNull.Value && decimal.TryParse(thisValue.ToString(), out reval))
@@ -121,7 +121,7 @@ namespace blog_webapi_vue.Model
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        public static DateTime ObjToDate(this object thisValue)
+        public static DateTime ObjectToDate(this object thisValue)
         {
             DateTime reval = DateTime.MinValue;
             if (thisValue != null && thisValue != DBNull.Value && DateTime.TryParse(thisValue.ToString(), out reval))
@@ -136,7 +136,7 @@ namespace blog_webapi_vue.Model
         /// <param name="thisValue"></param>
         /// <param name="errorValue"></param>
         /// <returns></returns>
-        public static DateTime ObjToDate(this object thisValue, DateTime errorValue)
+        public static DateTime ObjectToDate(this object thisValue, DateTime errorValue)
         {
             DateTime reval = DateTime.MinValue;
             if (thisValue != null && thisValue != DBNull.Value && DateTime.TryParse(thisValue.ToString(), out reval))
@@ -150,7 +150,7 @@ namespace blog_webapi_vue.Model
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        public static bool ObjToBool(this object thisValue)
+        public static bool ObjectToBool(this object thisValue)
         {
             bool reval = false;
             if (thisValue != null && thisValue != DBNull.Value && bool.TryParse(thisValue.ToString(), out reval))
