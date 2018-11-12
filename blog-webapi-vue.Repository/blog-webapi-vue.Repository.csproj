@@ -6,7 +6,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.0.13" />
     <PackageReference Include="sqlSugarCore" Version="4.8.5" />
   </ItemGroup>
 

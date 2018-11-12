@@ -225,7 +225,7 @@ namespace blog_webapi_vue.Repository
             return new DbContext(blnIsAutoCloseConnection);
         }
 
-        public static void Init(string strConnectionString, DbType enmDbType = SqlSugar.DbType.MySql)
+        public static void Init(string strConnectionString, DbType enmDbType = SqlSugar.DbType.SqlServer)
         {
             _connectionString = strConnectionString;
             _dbType = enmDbType;
