@@ -20,8 +20,8 @@ namespace blog_webapi_vue.Controllers
         [HttpGet]
         public int Get(int i, int j)
         {
-            IAdvertisementServices advertisementServices = new AdvertisementServices();
-            return advertisementServices.Sum(i, j);
+            // IAdvertisementServices advertisementServices = new AdvertisementServices();
+            return _advertisementServices.Sum(i, j);
         }
 
         // GET: api/Blog/5
