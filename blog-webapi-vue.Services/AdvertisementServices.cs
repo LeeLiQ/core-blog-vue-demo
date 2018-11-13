@@ -11,6 +11,12 @@ namespace blog_webapi_vue.Services
 {
     public class AdvertisementServices : BaseServices<Advertisement>, IAdvertisementServices
     {
+        private readonly IAdvertisementRepository _dal;
+        public AdvertisementServices(IAdvertisementRepository dal)
+        {
+            _dal = dal;
+            base.baseDal = dal;  // There is something not so clean here.
+        }
         // private readonly IAdvertisementRepository _repo = new AdvertisementRepository();
 
         // public int Add(Advertisement model)
@@ -40,7 +46,7 @@ namespace blog_webapi_vue.Services
 
         public int Sum(int i, int j)
         {
-            return i+j;
+            return i + j;
         }
     }
 }

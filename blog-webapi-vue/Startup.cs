@@ -118,7 +118,7 @@ namespace blog_webapi_vue
             var builder = new ContainerBuilder();
             // builder.RegisterType<AdvertisementServices>()
             //         .As<IAdvertisementServices>();
-            var assemblyServices = Assembly.Load("blog-webapi-vue.Services");
+            var assemblyServices = Assembly.Load("blog-webapi-vue.Services"); // we can use path.combine and the path of the .dll in netcoreapp2.1 if we want to remove dependency from .csproj
             builder.RegisterAssemblyTypes(assemblyServices).AsImplementedInterfaces();
             var assemblyRepositories = Assembly.Load("blog-webapi-vue.Repository");
             builder.RegisterAssemblyTypes(assemblyRepositories).AsImplementedInterfaces();

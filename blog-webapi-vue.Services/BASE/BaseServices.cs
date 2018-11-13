@@ -8,9 +8,9 @@ using blog_webapi_vue.Repository.BASE;
 
 namespace blog_webapi_vue.Services.BASE
 {
-    public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : class, new ()
+    public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : class, new()
     {
-        public IBaseRepository<TEntity> baseDal = new BaseRepository<TEntity>();
+        protected IBaseRepository<TEntity> baseDal; // = new BaseRepository<TEntity>();
 
         public async Task<TEntity> QueryByID(object objId)
         {
@@ -22,7 +22,7 @@ namespace blog_webapi_vue.Services.BASE
         /// </summary>
         /// <param name="objId">id</param>
         /// <param name="blnUseCache"></param>
-        /// <returns>数据实体</returns>
+        /// <returns></returns>
         public async Task<TEntity> QueryByID(object objId, bool blnUseCache = false)
         {
             return await baseDal.QueryByID(objId, blnUseCache);
