@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -45,15 +46,15 @@ namespace blog_webapi_vue
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v0.1.0",
-                        Title = "Blog.Core API",
-                        Description = "Framework Documentation",
-                        TermsOfService = "None",
-                        Contact = new Swashbuckle.AspNetCore.Swagger.Contact
-                        {
-                            Name = "Blog.Core",
-                                Email = "xxxx@xxx.com",
-                                Url = "https://www.something.com"
-                        }
+                    Title = "Blog.Core API",
+                    Description = "Framework Documentation",
+                    TermsOfService = "None",
+                    Contact = new Swashbuckle.AspNetCore.Swagger.Contact
+                    {
+                        Name = "Blog.Core",
+                        Email = "xxxx@xxx.com",
+                        Url = "https://www.something.com"
+                    }
                 });
 
                 var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
@@ -72,9 +73,9 @@ namespace blog_webapi_vue
                 c.AddSecurityDefinition("Blog.Core", new ApiKeyScheme
                 {
                     Description = "JWT auth (data will be in the request header) enter Bearer {token} below.",
-                        Name = "Authorization", // jwt default parameter name
-                        In = "header",
-                        Type = "apiKey"
+                    Name = "Authorization", // jwt default parameter name
+                    In = "header",
+                    Type = "apiKey"
                 });
 
                 #endregion
@@ -100,23 +101,27 @@ namespace blog_webapi_vue
                 {
                     o.TokenValidationParameters = new TokenValidationParameters
                     {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = "Blog.Core",
-                    ValidAudience = "wr",
-                    ValidateLifetime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(JwtHelper.secretKey)),
-                    // cache expiry time, total = this time + jwt expiry time
-                    ClockSkew = TimeSpan.FromSeconds(30)
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "Blog.Core",
+                        ValidAudience = "wr",
+                        ValidateLifetime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(JwtHelper.secretKey)),
+                        // cache expiry time, total = this time + jwt expiry time
+                        ClockSkew = TimeSpan.FromSeconds(30)
                     };
                 });
             #endregion
-        
-            
+
+
             var builder = new ContainerBuilder();
-            builder.RegisterType<AdvertisementServices>()
-                    .As<IAdvertisementServices>();
+            // builder.RegisterType<AdvertisementServices>()
+            //         .As<IAdvertisementServices>();
+            var assemblyServices = Assembly.Load("blog-webapi-vue.Services");
+            builder.RegisterAssemblyTypes(assemblyServices).AsImplementedInterfaces();
+            var assemblyRepositories = Assembly.Load("blog-webapi-vue.Repository");
+            builder.RegisterAssemblyTypes(assemblyRepositories).AsImplementedInterfaces();
             builder.Populate(services);
             var ApplicationContainer = builder.Build();
             return new AutofacServiceProvider(ApplicationContainer);
