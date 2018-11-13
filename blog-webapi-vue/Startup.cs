@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using blog_webapi_vue.AuthHelper;
-
+using blog_webapi_vue.IServices;
+using blog_webapi_vue.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +35,7 @@ namespace blog_webapi_vue
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -110,6 +112,14 @@ namespace blog_webapi_vue
                     };
                 });
             #endregion
+        
+            
+            var builder = new ContainerBuilder();
+            builder.RegisterType<AdvertisementServices>()
+                    .As<IAdvertisementServices>();
+            builder.Populate(services);
+            var ApplicationContainer = builder.Build();
+            return new AutofacServiceProvider(ApplicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

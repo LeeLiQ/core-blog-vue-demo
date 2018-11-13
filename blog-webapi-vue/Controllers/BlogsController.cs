@@ -10,6 +10,13 @@ namespace blog_webapi_vue.Controllers
     [Route("api/[controller]")]
     public class BlogsController : Controller
     {
+        private readonly IAdvertisementServices _advertisementServices;
+
+        public BlogsController(IAdvertisementServices advertisementServices)
+        {
+            _advertisementServices = advertisementServices;
+        }
+
         [HttpGet]
         public int Get(int i, int j)
         {
@@ -21,8 +28,8 @@ namespace blog_webapi_vue.Controllers
         [HttpGet("{id}", Name = "Get")]
         public async Task<List<Advertisement>> Get(int id)
         {
-            IAdvertisementServices advertisementServices = new AdvertisementServices();
-            return await advertisementServices.Query(d => d.Id == id);
+            // IAdvertisementServices advertisementServices = new AdvertisementServices();
+            return await _advertisementServices.Query(d => d.Id == id);
         }
 
         // POST: api/Blog
