@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Autofac.Extras.DynamicProxy;
+using blog_webapi_vue.AOP;
 using blog_webapi_vue.AuthHelper;
 using blog_webapi_vue.IServices;
 using blog_webapi_vue.Services;
@@ -118,8 +120,16 @@ namespace blog_webapi_vue
             var builder = new ContainerBuilder();
             // builder.RegisterType<AdvertisementServices>()
             //         .As<IAdvertisementServices>();
+
+            builder.RegisterType<BlogLogAOP>();
+            builder.RegisterType<BlogCacheAOP>();
             var assemblyServices = Assembly.Load("blog-webapi-vue.Services"); // we can use path.combine and the path of the .dll in netcoreapp2.1 if we want to remove dependency from .csproj
-            builder.RegisterAssemblyTypes(assemblyServices).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(assemblyServices)
+                    .AsImplementedInterfaces()
+                    .InstancePerLifetimeScope()
+                    .EnableInterfaceInterceptors()
+                    .InterceptedBy(typeof(BlogLogAOP))
+                    .InterceptedBy(typeof(BlogCacheAOP));
             var assemblyRepositories = Assembly.Load("blog-webapi-vue.Repository");
             builder.RegisterAssemblyTypes(assemblyRepositories).AsImplementedInterfaces();
             builder.Populate(services);

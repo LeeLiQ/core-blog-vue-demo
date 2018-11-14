@@ -11,11 +11,11 @@ namespace blog_webapi_vue.Services
 {
     public class AdvertisementServices : BaseServices<Advertisement>, IAdvertisementServices
     {
-        private readonly IAdvertisementRepository _dal;
-        public AdvertisementServices(IAdvertisementRepository dal)
+        // private readonly IAdvertisementRepository _dal;
+        public AdvertisementServices(IAdvertisementRepository dal) : base(dal)
         {
-            _dal = dal;
-            base.baseDal = dal;  // There is something not so clean here.
+            // _dal = dal;
+            // base.baseDal = dal;  // There is something not so clean here.
         }
         // private readonly IAdvertisementRepository _repo = new AdvertisementRepository();
 

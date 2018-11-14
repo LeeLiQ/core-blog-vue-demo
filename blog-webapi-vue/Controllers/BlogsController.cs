@@ -11,10 +11,12 @@ namespace blog_webapi_vue.Controllers
     public class BlogsController : Controller
     {
         private readonly IAdvertisementServices _advertisementServices;
+        private readonly IBlogArticleServices _blogArticleServices;
 
-        public BlogsController(IAdvertisementServices advertisementServices)
+        public BlogsController(IAdvertisementServices advertisementServices, IBlogArticleServices blogArticleServices)
         {
             _advertisementServices = advertisementServices;
+            _blogArticleServices = blogArticleServices;
         }
 
         [HttpGet]
@@ -48,6 +50,15 @@ namespace blog_webapi_vue.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+
+        //Demo for AOP
+        [HttpGet]
+        [Route("GetBlogs")]
+        public async Task<List<BlogArticle>> GetBlogs()
+        {
+            return await _blogArticleServices.GetBlogs();
         }
     }
 }

@@ -12,6 +12,11 @@ namespace blog_webapi_vue.Services.BASE
     {
         protected IBaseRepository<TEntity> baseDal; // = new BaseRepository<TEntity>();
 
+        public BaseServices(IBaseRepository<TEntity> dal)
+        {
+            baseDal = dal;
+        }
+
         public async Task<TEntity> QueryByID(object objId)
         {
             return await baseDal.QueryByID(objId);
