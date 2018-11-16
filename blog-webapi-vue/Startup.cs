@@ -10,6 +10,7 @@ using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
 using blog_webapi_vue.AOP;
 using blog_webapi_vue.AuthHelper;
+using blog_webapi_vue.Common.Redis;
 using blog_webapi_vue.IServices;
 using blog_webapi_vue.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -116,6 +117,7 @@ namespace blog_webapi_vue
                 });
             #endregion
 
+            services.AddScoped<IRedisCacheManager, RedisCacheManager>();
 
             var builder = new ContainerBuilder();
             // builder.RegisterType<AdvertisementServices>()

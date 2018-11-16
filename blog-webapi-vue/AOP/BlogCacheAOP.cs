@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using blog_webapi_vue.Common.Attributes;
 using Castle.DynamicProxy;
 
 namespace blog_webapi_vue.AOP
@@ -13,18 +14,25 @@ namespace blog_webapi_vue.AOP
         }
         public void Intercept(IInvocation invocation)
         {
-            var cacheKey = CustomCacheKey(invocation);
-            var cacheValue = _cache.Get(cacheKey);
-            if (cacheValue != null)
+            var method = invocation.MethodInvocationTarget ?? invocation.Method;
+            var qCachingAttribute = method.GetCustomAttributes(true).FirstOrDefault(x => x.GetType() == typeof(CachingAttribute)) as CachingAttribute;
+            if (qCachingAttribute != null)
             {
-                invocation.ReturnValue = cacheValue;
-                return;
+                var cacheKey = CustomCacheKey(invocation);
+                var cacheValue = _cache.Get(cacheKey);
+                if (cacheValue != null)
+                {
+                    invocation.ReturnValue = cacheValue;
+                    return;
+                }
+
+                invocation.Proceed();
+
+                if (!string.IsNullOrWhiteSpace(cacheKey))
+                    _cache.Set(cacheKey, invocation.ReturnValue);
             }
-
-            invocation.Proceed();
-
-            if (!string.IsNullOrWhiteSpace(cacheKey))
-                _cache.Set(cacheKey, invocation.ReturnValue);
+            else
+                invocation.Proceed();
         }
 
         private string CustomCacheKey(IInvocation invocation)

@@ -28,6 +28,12 @@
     <ProjectReference Include="..\blog-webapi-vue.Services\blog-webapi-vue.Services.csproj" />
     <ProjectReference Include="..\blog-webapi-vue.IRepository\blog-webapi-vue.IRepository.csproj" />
     <ProjectReference Include="..\blog-webapi-vue.Repository\blog-webapi-vue.Repository.csproj" />
+    <ProjectReference Include="..\blog-webapi-vue.Common\blog-webapi-vue.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+      <None Update="appsettings.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@
     <ProjectReference Include="..\blog-webapi-vue.IServices\blog-webapi-vue.IServices.csproj" />
     <ProjectReference Include="..\blog-webapi-vue.IRepository\blog-webapi-vue.IRepository.csproj" />
     <ProjectReference Include="..\blog-webapi-vue.Repository\blog-webapi-vue.Repository.csproj" />
+    <ProjectReference Include="..\blog-webapi-vue.Common\blog-webapi-vue.Common.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
